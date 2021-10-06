@@ -7,38 +7,44 @@
           dense
           round
           icon="menu"
-          aria-label="Menu"
+          aria-label="Chats"
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title>
-          Quasar App
+        <q-toolbar-title id="title">
+          {{titleText}}
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <q-btn
+          flat
+          dense
+          round
+          icon="settings"
+          aria-label="Settings"
+          @click="toggleRightDrawer"
+        />
       </q-toolbar>
     </q-header>
 
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
-      bordered
+      :width="260"
+      :breakpoint="700"
+      elevated
+      class="bg-primary text-white"
     >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
+    <Chats/>
     </q-drawer>
-
+    <q-drawer
+      side="right"
+      v-model="rightDrawerOpen"
+      show-if-above
+      bordered
+      :width="200"
+      elevated
+    >
+    </q-drawer>
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -46,70 +52,38 @@
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink.vue'
-
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
-
+import Chats from 'src/components/Chats.vue'
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink
+    Chats
   },
 
   setup () {
     const leftDrawerOpen = ref(false)
+    const rightDrawerOpen = ref(true)
+    const titleText = 'Chatter';
 
     return {
-      essentialLinks: linksList,
       leftDrawerOpen,
+      rightDrawerOpen,
+      titleText,
       toggleLeftDrawer () {
+        if(!leftDrawerOpen.value && rightDrawerOpen.value) {
+          rightDrawerOpen.value = !rightDrawerOpen.value;
+        }
+
         leftDrawerOpen.value = !leftDrawerOpen.value
+      },
+      toggleRightDrawer () {
+        if(!rightDrawerOpen.value && leftDrawerOpen.value) {
+          leftDrawerOpen.value = !leftDrawerOpen.value;
+        }
+
+        rightDrawerOpen.value = !rightDrawerOpen.value
       }
     }
   }

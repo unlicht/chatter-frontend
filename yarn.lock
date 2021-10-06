@@ -1427,6 +1427,13 @@
     "@vue/compiler-dom" "3.2.4"
     "@vue/shared" "3.2.4"
 
+"@vue/composition-api@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-1.2.3.tgz#13a07e97332a3348bd39dae5f4bc7aa1ea7394c5"
+  integrity sha512-aWST3aQVDceER1NTqYX3j7sTRFQVf86o/UXB0lFWn2vLJLbbS1E4uCx+TT3rqaXB0QjZFeCYTlrGRB0afdp/aA==
+  dependencies:
+    tslib "^2.3.0"
+
 "@vue/devtools-api@^6.0.0-beta.14":
   version "6.0.0-beta.18"
   resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.0.0-beta.18.tgz#84c0aff9289a57294cb97490811f69e8a0a67f8a"
@@ -6174,7 +6181,7 @@ ts-loader@8.0.17:
     micromatch "^4.0.0"
     semver "^7.3.4"
 
-tslib@^2.0.3:
+tslib@^2.0.3, tslib@^2.3.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
